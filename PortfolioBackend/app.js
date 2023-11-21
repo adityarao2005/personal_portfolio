@@ -28,7 +28,8 @@ app.use("/api/messages", messages);
 
 // Global error handling
 app.use((err, _req, res, next) => {
-	res.status(500).send("Uh oh! An unexpected error occured. \n" + err);
+	console.error(err.stack);
+	res.status(500).send("Uh oh! An unexpected error occured.");
 })
 
 // start the Express server
