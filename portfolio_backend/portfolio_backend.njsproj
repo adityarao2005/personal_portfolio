@@ -3,16 +3,17 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <Name>PortfolioBackend</Name>
-    <RootNamespace>PortfolioBackend</RootNamespace>
+    <Name>portfolio_backend</Name>
+    <RootNamespace>portfolio_backend</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>109d5524-f439-44aa-9361-d572353942eb</ProjectGuid>
+    <ProjectGuid>0e7dae4d-ed19-48f7-8a47-feb6ba21625b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.js</StartupFile>
+    <StartupFile>server.ts</StartupFile>
+    <StartWebBrowser>True</StartWebBrowser>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -20,6 +21,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <NodejsPort>1337</NodejsPort>
+    <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>true</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -29,53 +31,27 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include=".env">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="app.js" />
-    <Content Include="db\conn.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="loadEnvironment.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="middleware\middleware.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="models\models.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="package.json" />
-    <Content Include="public\index.html">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="README.md" />
+    <None Include="server.ts" />
+    <Content Include=".env" />
+    <Content Include="loadEnvironment.js" />
+    <Content Include="middleware\middleware.js" />
+    <Content Include="models\models.js" />
     <Content Include="routes\art_links.js" />
-    <Content Include="routes\messages.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="routes\projects.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="routes\routes-helpers.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="security\tokens.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="security\token_secret_generator.js">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="routes\messages.js" />
+    <Content Include="routes\projects.js" />
+    <Content Include="routes\rest-route.js" />
+    <Content Include="security\tokens.js" />
+    <Content Include="security\token_secret_generator.js" />
+    <Content Include="tsconfig.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="db\" />
     <Folder Include="middleware\" />
     <Folder Include="models\" />
-    <Folder Include="security\" />
     <Folder Include="routes\" />
-    <Folder Include="public\" />
-    <Folder Include="public\images\" />
-    <Folder Include="public\javascripts\" />
+    <Folder Include="security\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

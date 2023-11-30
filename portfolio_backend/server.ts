@@ -1,6 +1,3 @@
-// Using strict JS
-'use strict';
-
 // Imports
 import "./loadEnvironment.js"
 import express from "express";

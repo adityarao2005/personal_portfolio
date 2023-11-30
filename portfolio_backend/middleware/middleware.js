@@ -1,5 +1,8 @@
 // For projects and art links, only read is available
+import { ArtLink, Message } from "../models/models.js";
 import checkIfAdminToken from "../security/tokens.js";
+import db from "../db/conn.js";
+import { projectsDB, art_linksDB, messagesDB } from "../db/OfflineDB.js"
 
 function checkNotAdmin(req) {
 	// Get the auth header
@@ -22,20 +25,37 @@ export function defaultAuthenthication(req, res, next) {
 	}
 
 	console.log("Permission granted");
+
 	// Otherwise proceed
 	next();
 }
 
+// Default auth is only read access for clients unless admin
+export function defaultAuthenthication(req, res, next) {
+
+	// Check if we are not the admin and that the request is not a get request
+	if (req.method != "GET" && checkNotAdmin(req)) {
+		return res.send("You do not have permission to access this resource").status(403);
+	}
+	console.log("Permission granted");
+	
+	// Otherwise proceed
+	next();
+}
+
+
 // Restricted auth is no access for clients unless admin
-export function restrictedAuthentication(req, res, next) {
+export function messagesAuthentication(req, res, next) {
 
 	// Check if we are not the admin
-	if (checkNotAdmin(req)) {
+	if (req.method != "POST" && checkNotAdmin(req)) {
 		return res.send("You do not have permission to access this resource").status(403);
 	}
 
 	console.log("Permission granted");
+
 	// Otherwise proceed
 	next();
 
 }
+
