@@ -1,5 +1,6 @@
 // Imports
 require("./loadEnvironment.js");
+require("./db/conn.js")
 const express = require("express");
 const cors = require("cors");
 const projects = require("./routes/projects.js");
@@ -16,9 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use("/api/projects", projects);
-app.use("/api/art-links", art_links);
-app.use("/api/messages", messages);
+app.use("/api/projects", projects.default);
+app.use("/api/art-links", art_links.default);
+app.use("/api/messages", messages.default);
 
 // Global error handling
 app.use((err, _req, res, next) => {

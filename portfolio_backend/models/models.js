@@ -1,18 +1,14 @@
 const mongoose = require("mongoose");
+// Schema's for the
 
-
-const Schema = mongoose.Schema;
-const model = mongoose.model;
-// Schema's for the types
-
-const projectLocation = new Schema({
+const projectLocation = new mongoose.Schema({
 	type: String,
 	location: String,
 	role: String,
 	url: String
 });
 
-const projectSchema = new Schema({
+const projectSchema = new mongoose.Schema({
 	title: String,
 	detail: String,
 	description: String,
@@ -25,22 +21,20 @@ const projectSchema = new Schema({
 	}
 });
 
-const artLinkSchema = new Schema({
+const artLinkSchema = new mongoose.Schema({
 	title: String,
 	uri: String,
 	date: Date,
 	type: String
 });
 
-const messageSchema = new Schema({
+const messageSchema = new mongoose.Schema({
 	name: String,
 	email: String,
 	content: String,
 	read: Boolean
 })
 
-const Project = model("Project", projectSchema);
-const ArtLink = model("ArtLink", artLinkSchema);
-const Message = model("Message", messageSchema);
-
-module.exports = { Project, ArtLink, Message };
+module.exports.Project = mongoose.model("Project", projectSchema);
+module.exports.ArtLink = mongoose.model("ArtLink", artLinkSchema);
+module.exports.Message = mongoose.model("Message", messageSchema);

@@ -1,6 +1,7 @@
 //Import statements
 const express = require('express');
 const mongoose = require("mongoose");
+const mongodb = require("mongodb")
 // Declarations
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -12,9 +13,9 @@ const ObjectId = mongoose.Types.ObjectId;
  * @param {mongoose.Model} MODEL
  * @param {string} routeLink
  */
-module.exports.applyRESTProperties = function(router, MODEL, routeLink) {
+module.exports.applyRESTProperties = function (router, MODEL, routeLink) {
 	// Create the rest router
-	
+
 	router.get("/", async (req, res) => {
 		//Get the query params from the req
 		let limit = req.params.limit;
@@ -34,7 +35,9 @@ module.exports.applyRESTProperties = function(router, MODEL, routeLink) {
 		console.log("Got the results successfully: " + results);
 
 		//Return the results and send 200 status
-		res.send(results).status(200);
+		res.send({ data: results }).status(200);
+
+
 	});
 
 	// Set get id method
@@ -42,7 +45,7 @@ module.exports.applyRESTProperties = function(router, MODEL, routeLink) {
 	router.get("/:id", async (req, res) => {
 		let result = await MODEL.findById(req.params.id);
 		//  Log results
-		console.log("Got the results successfully: " + results);
+		console.log("Got the results successfully: " + result);
 		//If the result exists then return it with 200
 		//else return 404
 		if (!result)
@@ -61,8 +64,8 @@ module.exports.applyRESTProperties = function(router, MODEL, routeLink) {
 
 		//Send the result
 		res
-			.send({ data: result })
 			.header("Location", routeLink + result._id)
+			.send({ data: result })
 			.status(201);
 	});
 
@@ -71,7 +74,7 @@ module.exports.applyRESTProperties = function(router, MODEL, routeLink) {
 	router.delete("/:id", async (req, res) => {
 		//Get the id from the parameter and create hte query
 		// Get the collection
-		let result = await MODEL.deleteOne({ _id: new ObjectId(req.params.id) });
+		let result = await MODEL.deleteOne({ _id: req.params.id });
 		// Log results
 		console.log("Got the results successfully: " + result);
 
@@ -89,7 +92,7 @@ module.exports.applyRESTProperties = function(router, MODEL, routeLink) {
 		// Later perform check over here
 		let result = await MODEL.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec();
 		// Log results
-		console.log("Got the results successfully: " + results);
+		console.log("Got the results successfully: " + result);
 		// Send the result
 		res.send({ data: result }).status(200);
 	});
