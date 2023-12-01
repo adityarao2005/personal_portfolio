@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
@@ -10,10 +9,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>0e7dae4d-ed19-48f7-8a47-feb6ba21625b</ProjectGuid>
+    <ProjectGuid>f3b160e1-71bf-47a4-90e4-9fb6b37ece29</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>server.ts</StartupFile>
-    <StartWebBrowser>True</StartWebBrowser>
+    <StartupFile>server.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +19,6 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <NodejsPort>1337</NodejsPort>
-    <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>true</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -31,8 +28,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="server.ts" />
     <Content Include=".env" />
+    <Content Include="db\conn.js" />
     <Content Include="loadEnvironment.js" />
     <Content Include="middleware\middleware.js" />
     <Content Include="models\models.js" />
@@ -42,7 +39,7 @@
     <Content Include="routes\rest-route.js" />
     <Content Include="security\tokens.js" />
     <Content Include="security\token_secret_generator.js" />
-    <Content Include="tsconfig.json" />
+    <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>

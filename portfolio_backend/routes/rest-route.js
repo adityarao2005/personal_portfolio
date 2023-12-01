@@ -1,106 +1,97 @@
-// // Import statements
-// import express from 'express'
-// import mongoose, { Model } from "mongoose";
-// // Declarations
-// const ObjectId = mongoose.Types.ObjectId;
+//Import statements
+const express = require('express');
+const mongoose = require("mongoose");
+// Declarations
+const ObjectId = mongoose.Types.ObjectId;
 
-// // Current collections: art-links, messages, MODELs
-// // Create a rest api
-// // Sample CRUD based REST API
-// export default function applyRESTProperties(_router, _MODEL, routeLink) {
-//     // Create the rest router
-//     // Access the rest router by doing a hack to trick intellisense
-//     let router = {
-//         data: express.Router()
-//     }.data;
-//     router = _router;
-    
+/**
+ * Current collections: art-links, messages, MODELs
+ * Create a rest api
+ * Sample CRUD based REST API
+ * @param {express.Router} router
+ * @param {mongoose.Model} MODEL
+ * @param {string} routeLink
+ */
+module.exports.applyRESTProperties = function(router, MODEL, routeLink) {
+	// Create the rest router
+	
+	router.get("/", async (req, res) => {
+		//Get the query params from the req
+		let limit = req.params.limit;
+		let skip = req.params.skip;
+		//Find all the results from the collection
+		//turn it into an array and return
+		let stream = MODEL.find({});
 
-//     // Trick intellisense
-//     let MODEL = {
-//         data: Model
-//     }.data;
-//     MODEL = _MODEL;
+		//Add limit and skipping params
+		if (limit) stream = stream.limit(limit);
 
-    
-//     // Set the get
-//     router.get("/", async (req, res) => {
-//         // Get the query params from the req
-//         let limit = req.params.limit;
-//         let skip = req.params.skip;
-//         // Find all the results from the collection
-//         // turn it into an array and return
-//         let stream = MODEL.find({});
+		if (skip) stream = stream.skip(skip);
 
-//         // Add limit and skipping params
-//         if (limit) stream = stream.limit(limit);
+		//Get the results
+		let results = await stream.exec();
+		//Log results
+		console.log("Got the results successfully: " + results);
 
-//         if (skip) stream = stream.skip(skip);
+		//Return the results and send 200 status
+		res.send(results).status(200);
+	});
 
-//         // Get the results
-//         let results = await stream.exec();
-//         // Log results
-//         console.log("Got the results successfully: " + results);
+	// Set get id method
+	//Get a single document based on ID
+	router.get("/:id", async (req, res) => {
+		let result = await MODEL.findById(req.params.id);
+		//  Log results
+		console.log("Got the results successfully: " + results);
+		//If the result exists then return it with 200
+		//else return 404
+		if (!result)
+			res.send("Not found").status(404);
+		else
+			res.send({ data: result }).status(200);
+	});
 
-//         // Return the results and send 200 status
-//         res.send(results).status(200);
-//     });
+	//Set post method
+	//Add a new document to the collection
+	router.post("/", async (req, res) => {
+		// Get the document
+		let result = await MODEL.create(req.body);
 
-//     // Set get id method
-//     // Get a single document based on ID
-//     router.get("/:id", async (req, res) => {
-//         let result = await MODEL.findById(req.params.id);
-//         // Log results
-//         console.log("Got the results successfully: " + results);
-//         // If the result exists then return it with 200
-//         // else return 404
-//         if (!result)
-//             res.send("Not found").status(404);
-//         else
-//             res.send({ data: result }).status(200);
-//     });
+		console.log("New object created");
 
-//     // Set post method
-//     // Add a new document to the collection
-//     router.post("/", async (req, res) => {
-//         // Get the document
-//         let result = await MODEL.create(req.body);
+		//Send the result
+		res
+			.send({ data: result })
+			.header("Location", routeLink + result._id)
+			.status(201);
+	});
 
-//         console.log("New object created");
+	// Set delete method
+	//Delete an entry at a specific ID
+	router.delete("/:id", async (req, res) => {
+		//Get the id from the parameter and create hte query
+		// Get the collection
+		let result = await MODEL.deleteOne({ _id: new ObjectId(req.params.id) });
+		// Log results
+		console.log("Got the results successfully: " + result);
 
-//         // Send the result
-//         res
-//             .send({ data: result })
-//             .header("Location", "/" + routeLink + "/" + result._id)
-//             .status(201);
-//     });
+		// Send the result
+		res.sendStatus(204);
+	});
 
-//     // Set delete method
-//     // Delete an entry at a specific ID
-//     router.delete("/:id", async (req, res) => {
-//         // Get the id from the parameter and create hte query
-//         // Get the collection
-//         let result = await MODEL.deleteOne({ _id: new ObjectId(req.params.id) });
-//         // Log results
-//         console.log("Got the results successfully: " + result);
+	// Set put method
+	// Update or patch the MODEL
+	router.put("/:id", async (req, res) => {
+		// Create the query based on the id to patch
+		const query = { _id: new ObjectId(req.params.id) };
 
-//         // Send the result
-//         res.sendStatus(204);
-//     });
-
-//     // Set put method
-//     // Update or patch the MODEL
-//     router.put("/:id", async (req, res) => {
-//         // Create the query based on the id to patch
-//         const query = { _id: new ObjectId(req.params.id) };
-
-//         // Update the result
-//         // Later perform check over here
-//         let result = await MODEL.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec();
-//         // Log results
-//         console.log("Got the results successfully: " + results);
-//         // Send the result
-//         res.send({ data: result }).status(200);
-//     });
-// }
+		// Update the result
+		// Later perform check over here
+		let result = await MODEL.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec();
+		// Log results
+		console.log("Got the results successfully: " + results);
+		// Send the result
+		res.send({ data: result }).status(200);
+	});
+}
 

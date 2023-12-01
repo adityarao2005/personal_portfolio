@@ -1,11 +1,10 @@
 // Imports
-import "./loadEnvironment.js"
-import express from "express";
-import cors from "cors";
-import "express-async-errors";
-import projects from "./routes/projects.js";
-import art_links from "./routes/art_links.js"
-import messages from "./routes/messages.js"
+require("./loadEnvironment.js");
+const express = require("express");
+const cors = require("cors");
+const projects = require("./routes/projects.js");
+const art_links = require("./routes/art_links.js");
+const messages = require("./routes/messages.js");
 
 // Port of application
 const PORT = process.env.PORT || 5050;
@@ -16,8 +15,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// static
-app.use("/", express.static('public'));
 // routes
 app.use("/api/projects", projects);
 app.use("/api/art-links", art_links);

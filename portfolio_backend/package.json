@@ -1,44 +1,21 @@
 {
-	"name": "portfolio_backend",
-	"type": "module",
-	"version": "0.0.0",
-	"description": "portfolio_backend",
-	"main": "server.js",
-	"author": {
-		"name": ""
-	},
-	"scripts": {
-		"build": "tsc --build",
-		"clean": "tsc --build --clean"
-	},
-	"dependencies": {
-		"body-parser": "^1.20.2",
-		"cookie-parser": "^1.4.6",
-		"debug": "^2.2.0",
-		"dotenv": "^16.3.1",
-		"express": "^4.18.2",
-		"helmet": "^7.1.0",
-		"jsonwebtoken": "^9.0.2",
-		"mongoose": "^8.0.2",
-		"morgan": "^1.10.0",
-		"nodemon": "^3.0.1",
-		"pug": "^2.0.4",
-		"serve-favicon": "^2.5.0"
-	},
-	"devDependencies": {
-		"cors": "^2.8.5",
-		"eslint": "^8.53.0",
-		"express-async-errors": "^3.1.1",
-		"mongodb": "^6.2.0"
-	},
-	"eslintConfig": {
-		"parser": "@typescript-eslint/parser",
-		"parserOptions": {
-			"ecmaVersion": "latest",
-			"sourceType": "module"
-		},
-		"plugins": [
-			"@typescript-eslint"
-		]
-	}
+  "name": "portfolio_backend",
+  "version": "0.0.0",
+  "description": "portfolio_backend",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "devDependencies": {
+    "eslint": "^8.21.0"
+  },
+  "eslintConfig": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2",
+    "node": "^21.2.0",
+    "nodemon": "^3.0.1"
+  }
 }
