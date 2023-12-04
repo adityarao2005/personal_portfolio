@@ -1,58 +1,83 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faBars } from '@fortawesome/free-solid-svg-icons'
+import React, { useState } from "react";
 
-// Navbar component
-function NavComponent() {
-
-	// Create the states
-	// First state is to check if we are hiding the button
-	const [hiddenLess400, setHiddenLess400] = useState(true);
-	// Second state is to check which button is active
-	const [active, setActive] = useState("1");
-
-	// These are links for the page
-	const links = [
-		{ id: "1", title: "Home", link: "#home" },
-		{ id: "2", title: "Projects", link: "#projects" },
-		{ id: "3", title: "About me", link: "#about-me" },
-		{ id: "4", title: "Vision", link: "#vision" },
-		{ id: "5", title: "Art Portfolio", link: "#art-portfolio" },
-		{ id: "6", title: "Contact me", link: "#contact-me" }
-	];
-
-	// Return
+function NavLink(props) {
 	return (
-		<div className="tablet:col-start-1 tablet:col-end-2 bg-white flex tablet:h-screen flex-col phone:justify-center gap-4 tablet:justify-start justify-start phone:flex-row tablet:flex-col sticky top-0">
-			<button className="text-center block phone:hidden" onClick={() => setHiddenLess400(!hiddenLess400)}>
-				<FontAwesomeIcon icon={hiddenLess400 ? faBars : faXmark} />
-			</button>
-
-			{links.map((page) =>
-				<NavLink
-					key={page.id}
-					hidden={hiddenLess400}
-					active={active == page.id}
-					page={page}
-					onClick={() => { setActive(page.id); return true; }} />
-			)}
-		</div>
+		<li>
+			<a
+				href={props.href}
+				className='block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+			>
+				{props.text}
+			</a>
+		</li>
 	);
 }
 
-function NavLink(props) {
-	const defaultClassStr = "text-center phone:inline-block tablet:block bg-gray-300 rounded-lg p-2 m-2 hover:bg-gray-400 active:bg-gray-500 ";
-	const hiddenStr = (props.hidden ? "hidden " : "");
-	const activeStr = (props.active ? "active " : "");
-
-	const classStr = defaultClassStr + hiddenStr + activeStr;
-
-	return <a
-		className={classStr}
-		href={props.page.link}
-		onClick={props.onClick}>
-		{props.page.title}
-	</a>;
+function HamburgerMenu(props) {
+	return (
+		<button
+			type='button'
+			className={props.className}
+			onClick={props.onClick}
+		>
+			<span className='sr-only'>Open main menu</span>
+			<svg
+				className='w-5 h-5'
+				xmlns='http://www.w3.org/2000/svg'
+				fill='none'
+				viewBox='0 0 17 14'
+			>
+				<path stroke='currentColor' d='M1 1h15M1 7h15M1 13h15' />
+			</svg>
+		</button>
+	);
 }
+
+const NavComponent = (props) => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+	return (
+		<nav className='bg-white border-gray-200 dark:bg-gray-900'>
+			<div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+				<a
+					href='/'
+					className='flex items-center space-x-3 rtl:space-x-reverse'
+				>
+					{props.brandIcon && (
+						<img
+							src={props.brandIcon}
+							className='h-8'
+							alt='Brand Logo'
+						/>
+					)}
+					<span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
+						{props.brandText}
+					</span>
+				</a>
+				<HamburgerMenu
+					className='inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
+					onClick={toggleMenu}
+				/>
+				<div
+					className={
+						"w-full md:block md:w-auto " +
+						(isMenuOpen ? "block" : "hidden")
+					}
+				>
+					<ul className='font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
+						{props.links.map((link) => (
+							<NavLink
+								href={link.href}
+								key={link.text}
+								text={link.text}
+							/>
+						))}
+					</ul>
+				</div>
+			</div>
+		</nav>
+	);
+};
 
 export default NavComponent;

@@ -1,7 +1,6 @@
 //Import statements
 const express = require('express');
 const mongoose = require("mongoose");
-const mongodb = require("mongodb")
 // Declarations
 const ObjectId = mongoose.Types.ObjectId;
 

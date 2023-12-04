@@ -8,17 +8,35 @@ export default {
 	theme: {
 		extend: {},
 		screens: {
-			'phone': '460px',
-			// => @media (min-width: 400x) { ... }
+			'sm-exclusive': { 'max': '639px' },
+			// => @media (max-width: 639px) { ... }
 
-			'tablet': '780px',
+			'sm': '640px',
 			// => @media (min-width: 640px) { ... }
 
-			'laptop': '1024px',
+			'md-exclusive': { 'max': '767px', 'min': '640px' },
+			// => @media (min-width: 640px) and (max-width: 767px) { ... }
+
+			'md': '768px',
+			// => @media (min-width: 768px) { ... }
+
+			'lg-exclusive': { 'max': '1023px', 'min': '768px' },
+			// => @media (min-width: 640px) and (max-width: 767px) { ... }
+
+			'lg': '1024px',
 			// => @media (min-width: 1024px) { ... }
 
-			'desktop': '1280px',
+			'xl-exclusive': { 'max': '1279px', 'min': '1024px' },
+			// => @media (min-width: 640px) and (max-width: 767px) { ... }
+
+			'xl': '1280px',
 			// => @media (min-width: 1280px) { ... }
+
+			'2xl-exclusive': { 'max': '1535px', 'min': '1280' },
+			// => @media (min-width: 640px) and (max-width: 767px) { ... }
+
+			'2xl': '1536px',
+			// => @media (min-width: 1536px) { ... }
 		},
 	},
 	plugins: [],
