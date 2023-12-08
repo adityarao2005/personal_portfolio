@@ -26,7 +26,7 @@ function Icon(props) {
 
 function Text(props) {
 	return (
-		<div className="text-black text-xl font-normal font-['Poppins']">
+		<div className="text-black text-lg md:text-xl font-normal font-['Poppins']">
 			{props.children}
 		</div>
 	);
@@ -35,23 +35,31 @@ function Text(props) {
 function HomePage() {
 	return (
 		<div className='flex-1'>
-			<div className='grid h-full'>
-				<div className='col-start-1 row-start-1 flex gap-4 pr-4 pl-4 z-10'>
-					<div className='flex-none w-24'>
-						<div className='flex flex-col items-center gap-4'>
+			<div className='grid md:h-full'>
+				<div className='col-start-1 row-start-1 flex flex-col md:flex-row gap-4 md:pr-4 md:pl-4 z-10'>
+					{/* 
+						This is the social media links
+					*/}
+					<div className='flex-none md:w-24'>
+						<div className='flex flex-row md:flex-col items-center gap-4'>
+							<div className='flex-1'></div>
 							<Icon icon={faGithub} />
 							<Icon icon={faLinkedin} />
 							<Icon icon={faInstagram} />
 							<Icon icon={faDiscord} />
 							<Icon icon={faEnvelope} />
+							<div className='flex-1'></div>
 						</div>
 					</div>
-					<div className='flex-auto flex flex-row'>
+					<div className='flex-auto flex flex-col md:flex-row'>
+						{/*
+								This is the column for developer stuff
+							*/}
 						<div className='flex-1 flex flex-col-reverse'>
-							<div className='order-last mb-2'>
+							<div className='order-last mb-2 sm-exclusive:mx-4'>
 								<h1
 									className={
-										"text-black text-6xl font-semibold font-['Poppins']"
+										"text-black text-3xl md:text-6xl font-semibold font-['Poppins']"
 									}
 								>
 									<TypingAnimation
@@ -67,23 +75,26 @@ function HomePage() {
 									/>
 								</h1>
 							</div>
-							<div className='flex flex-row order-first pb-20'>
-								<div className='flex-auto w-64'>
+							<div className='flex flex-col md:flex-row order-first pb-20 sm-exclusive:mx-4'>
+								<div className='flex-auto w-full md:w-64'>
 									<Text>
 										Im a cool developer in McMaster
 										University (Rest of the stuff go here)
 									</Text>
 								</div>
-								<div className='flex-auto w-32'>
+								<div className='flex-auto w-full md:w-32'>
 									<Button>View Projects</Button>
 								</div>
 							</div>
 						</div>
-						<div className='flex-1 flex flex-col'>
+						{/*
+								This is the column for art stuff
+							*/}
+						<div className='flex-1 flex flex-col sm-exclusive:mx-4'>
 							<div className='flex-none'>
 								<h1
 									className={
-										"text-black text-6xl font-semibold font-['Poppins']"
+										"text-black text-3xl md:text-6xl font-semibold font-['Poppins']"
 									}
 								>
 									Artist
@@ -95,10 +106,10 @@ function HomePage() {
 								</Text>
 								<Button>View Art Portfolio</Button>
 							</div>
-							<div className='flex-1'></div>
-							<div className='pb-20 flex flex-row-reverse'>
-								<div className='pr-20'>
-									<button className='bg-black rounded-lg text-center text-white text-5xl w-80 py-10 px-4 hover:bg-slate-700 active:bg-slate-900'>
+							<div className='md:flex-1'></div>
+							<div className='md:pb-20 pb-5 flex md:flex-row-reverse'>
+								<div className='pt-2 md:pr-20 sm-exclusive:w-full'>
+									<button className='bg-black rounded-lg text-center text-white md:text-5xl w-full md:w-80 md:py-10 py-4 px-4 hover:bg-slate-700 active:bg-slate-900'>
 										Download Resume
 									</button>
 								</div>
@@ -106,7 +117,10 @@ function HomePage() {
 						</div>
 					</div>
 				</div>
-				<div className='justify-center col-start-1 row-start-1 self-center z-0'>
+				{/*
+				This is the background image
+				*/}
+				<div className='justify-center sm-exclusive:block col-start-1 row-start-1 self-center z-0'>
 					<svg
 						className='text-center block m-auto w-1/2 opacity-50'
 						viewBox='0 0 100 100'
