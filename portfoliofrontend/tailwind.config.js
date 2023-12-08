@@ -6,7 +6,17 @@ export default {
 		"./src/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			animation: {
+				fade: 'fadeIn 2s ease-in-out',
+			},
+			keyframes: (theme) => ({
+				fadeIn: {
+					'100%': { opacity: 1 },
+					'0%': { opacity: 0 },
+				},
+			}),
+		},
 		screens: {
 			'sm-exclusive': { 'max': '639px' },
 			// => @media (max-width: 639px) { ... }
