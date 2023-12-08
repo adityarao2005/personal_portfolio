@@ -50,7 +50,7 @@ function ComponentTester() {
 					<tr>
 						<TableCell>Header</TableCell>
 						<TableCell>
-							<Header>Header</Header>
+							<Header type='8'>Header</Header>
 						</TableCell>
 					</tr>
 					<tr>
@@ -66,11 +66,11 @@ function ComponentTester() {
 						<TableCell>
 							<NavComponent
 								links={[
-									{ text: "Home", href: "#" },
-									{ text: "About", href: "#" },
-									{ text: "Services", href: "#" },
-									{ text: "Pricing", href: "#" },
-									{ text: "Contact", href: "#" },
+									{ id: "1", text: "Home", href: "#" },
+									{ id: "2", text: "About", href: "#" },
+									{ id: "3", text: "Services", href: "#" },
+									{ id: "4", text: "Pricing", href: "#" },
+									{ id: "5", text: "Contact", href: "#" },
 								]}
 								brandText='Flowbite'
 								brandIcon='https://flowbite.com/docs/images/logo.svg'

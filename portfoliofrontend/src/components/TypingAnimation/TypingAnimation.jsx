@@ -84,7 +84,9 @@ export default function TypingAnimation(props) {
 	return (
 		<>
 			<span className={textStyles}>{typingText}</span>
-			<span className={cursorStyles + (!blinkPointer && " invisible")}>
+			<span
+				className={cursorStyles + " " + (!blinkPointer && " invisible")}
+			>
 				<b>|</b>
 			</span>
 		</>
