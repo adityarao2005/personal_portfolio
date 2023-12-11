@@ -2,7 +2,7 @@
 const express = require("express")
 const tokens = require("../security/tokens.js");
 
-function checkNotAdmin(req) {
+module.exports.checkNotAdmin = function checkNotAdmin(req) {
 	// Get the auth header
 	const authHeader = req.headers['authorization'];
 	// Check if the auth header exists and if so split and get the second value
@@ -24,7 +24,7 @@ function checkNotAdmin(req) {
 module.exports.defaultAuthenthication = function (req, res, next) {
 	// Check if we are not the admin and that the request is not a get request
 	if (req.method != "GET" && checkNotAdmin(req)) {
-		return res.send({ "errorMSG" : "You do not have permission to access this resource" }).status(403);
+		return res.send({ "errorMSG": "You do not have permission to access this resource" }).status(403);
 	}
 
 	console.log("Permission granted");
@@ -41,11 +41,11 @@ module.exports.defaultAuthenthication = function (req, res, next) {
  * @param {express.NextFunction} next
  * @returns
  */
-module.exports.messagesAuthentication = function(req, res, next) {
-	
+module.exports.messagesAuthentication = function (req, res, next) {
+
 	// Check if we are not the admin
 	if (req.method != "POST" && checkNotAdmin(req)) {
-		return res.send({ "errorMSG" : "You do not have permission to access this resource" }).status(403);
+		return res.send({ "errorMSG": "You do not have permission to access this resource" }).status(403);
 	}
 
 	console.log("Permission granted");

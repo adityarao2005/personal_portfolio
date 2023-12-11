@@ -15,4 +15,4 @@ router.use("/", defaultAuthenthication);
 rest_route.applyRESTProperties(router, ArtLink, "/api/art-links/")
 
 // Export router
-module.exports.default = router;
+module.exports = router;

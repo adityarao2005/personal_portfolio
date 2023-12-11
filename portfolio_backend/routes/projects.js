@@ -15,4 +15,4 @@ router.use("/", defaultAuthenthication);
 rest_route.applyRESTProperties(router, Project, "/api/projects/")
 
 // Export router
-module.exports.default = router;
+module.exports = router;
