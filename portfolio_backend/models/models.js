@@ -32,9 +32,19 @@ const messageSchema = new mongoose.Schema({
 	name: String,
 	email: String,
 	content: String,
-	read: Boolean
+	read: Boolean,
+	subject: String,
 })
+
+const blogSchema = new mongoose.Schema({
+	title: String,
+	content: String,
+	date: Date,
+	tags: [String],
+	uri: String,
+});
 
 module.exports.Project = mongoose.model("Project", projectSchema);
 module.exports.ArtLink = mongoose.model("ArtLink", artLinkSchema);
 module.exports.Message = mongoose.model("Message", messageSchema);
+module.exports.Blog = mongoose.model("Blog", blogSchema);

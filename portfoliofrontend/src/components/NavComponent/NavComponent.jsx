@@ -46,7 +46,7 @@ const NavComponent = (props) => {
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 	return (
-		<nav className='flex-none bg-white border-gray-200 dark:bg-gray-900'>
+		<nav className='flex-none border-gray-200 bg-gray-900 sticky top-0 z-20'>
 			<div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
 				<a
 					href='/'

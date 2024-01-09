@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 function Layout() {
 	return (
 		<>
-			<div className='w-screen h-screen flex flex-col'>
+			<div className='w-full h-full flex flex-col'>
 				<NavComponent
 					links={[
 						{ id: "1", text: "Home", href: "/" },
