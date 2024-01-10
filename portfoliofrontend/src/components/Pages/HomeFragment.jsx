@@ -67,7 +67,7 @@ export default function HomeFragment() {
 											"Software Engineer",
 											"Fullstack Web Developer",
 											"Application Developer",
-											"CS Tutor",
+											"Math & CS Tutor",
 											"Database Architect",
 											"Math and CS enthusiast",
 										]}
@@ -124,7 +124,7 @@ export default function HomeFragment() {
 					<img
 						src={profile}
 						alt='logo'
-						className='w-1/2 h-1/2 mx-auto align-center text-center rounded-full'
+						className='w-1/2 h-1/2 mx-auto align-center text-center rounded-full opacity-60 blur-[2xp]'
 					/>
 				</div>
 			</div>

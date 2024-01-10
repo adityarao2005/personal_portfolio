@@ -7,14 +7,79 @@ export default {
 	],
 	theme: {
 		extend: {
-			animation: {
+			'animation': {
 				fade: 'fadeIn 2s ease-in-out',
+				slideShow_0: 'slideShow 8s linear infinite',
+				slideShow_1: 'slideShow 8s linear -1s infinite',
+				slideShow_2: 'slideShow 8s linear -2s infinite',
+				slideShow_3: 'slideShow 8s linear -3s infinite',
+				slideShow_4: 'slideShow 8s linear -4s infinite',
+				slideShow_5: 'slideShow 8s linear -5s infinite',
+				slideShow_6: 'slideShow 8s linear -6s infinite',
+				slideShow_7: 'slideShow 8s linear -7s infinite',
 			},
 			keyframes: (theme) => ({
 				fadeIn: {
 					'100%': { opacity: 1 },
 					'0%': { opacity: 0 },
 				},
+				slideShow: {
+					// fade in
+					'0%': {
+						opacity: 0,
+						transform: 'translateY(-128px)',
+						color: theme('colors.zinc.700'),
+						'font-size': theme('fontSize.9xl')
+					},
+					// text-zinc-900 text-9xl
+					'12.5%': {
+						opacity: 1,
+						transform: 'translateY(0px)',
+					},
+					//text-neutral-800 text-8xl
+					'25%': {
+						transform: 'translateY(133px)',
+						color: theme('colors.neutral.600'),
+						'font-size': theme('fontSize.8xl')
+					},
+					// text-neutral-700 text-8xl
+					'37.5%': {
+						transform: 'translateY(232px)',
+						color: theme('colors.neutral.500'),
+						'font-size': theme('fontSize.8xl')
+					},
+					// text-neutral-600 text-9xl
+					'50%': {
+						transform: 'translateY(328px)',
+						color: theme('colors.neutral.400'),
+						'font-size': theme('fontSize.9xl')
+					},
+					// text-zinc-800 text-8xl
+					'62.5%': {
+						transform: 'translateY(424px)',
+						color: theme('colors.zinc.600'),
+						'font-size': theme('fontSize.8xl')
+					},
+					// text-neutral-800 text-8xl
+					'75%': {
+						transform: 'translateY(520px)',
+						color: theme('colors.neutral.600'),
+						'font-size': theme('fontSize.8xl')
+					},
+					// text-neutral-700 text-8xl
+					'87.5%': {
+						transform: 'translateY(616px)',
+						color: theme('colors.neutral.500'),
+						'font-size': theme('fontSize.8xl')
+					},
+					// fade out
+					'100%': {
+						opacity: 0,
+						transform: 'translateY(712px)',
+						'font-size': theme('fontSize.8xl'),
+						color: theme('colors.neutral.500')
+					},
+				}
 			}),
 		},
 		screens: {

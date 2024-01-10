@@ -9,9 +9,7 @@ function Link(props) {
 				className={({ isActive }) =>
 					[
 						"block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
-						isActive
-							? "text-gray-900 dark:text-white"
-							: "text-gray-500 dark:text-gray-500",
+						isActive ? "text-white" : "text-gray-500",
 					].join(" ")
 				}
 			>
@@ -59,7 +57,7 @@ const NavComponent = (props) => {
 							alt='Brand Logo'
 						/>
 					)}
-					<span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
+					<span className='self-center text-2xl font-semibold whitespace-nowrap text-white'>
 						{props.brandText}
 					</span>
 				</a>
@@ -73,7 +71,7 @@ const NavComponent = (props) => {
 						(isMenuOpen ? "block" : "hidden")
 					}
 				>
-					<ul className='font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
+					<ul className='font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700'>
 						{props.links.map((link) => (
 							<Link
 								href={link.href}
