@@ -1,5 +1,4 @@
 import React from "react";
-import TypingAnimation from "../TypingAnimation/TypingAnimation";
 
 function Button(props) {
 	return (

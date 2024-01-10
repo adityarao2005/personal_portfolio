@@ -34,7 +34,7 @@ function Text(props) {
 
 export default function HomeFragment() {
 	return (
-		<div className='w-screen h-screen flex-1'>
+		<div className='w-screen h-screen flex-1 bg-emerald-50'>
 			<div className='grid md:h-full'>
 				<div className='col-start-1 row-start-1 flex flex-col md:flex-row gap-4 md:pr-4 md:pl-4 z-10'>
 					{/* 
@@ -78,12 +78,18 @@ export default function HomeFragment() {
 							<div className='flex flex-col md:flex-row order-first pb-20 sm-exclusive:mx-4'>
 								<div className='flex-auto w-full md:w-64'>
 									<Text>
-										Im a cool developer in McMaster
-										University (Rest of the stuff go here)
+										I'm a cool engineer in McMaster
+										University currently pursuing my
+										Bachelor's Degree in Software
+										Engineering. Click the button aside to
+										view the projects I have completed so
+										far.
 									</Text>
 								</div>
-								<div className='flex-auto w-full md:w-32'>
-									<Button>View Projects</Button>
+								<div className='flex-auto w-full md:w-32 h-full'>
+									<button className='bg-black font-semibold m-5 py-6 align-middle sm-exclusive:w-full rounded-lg text-center text-white px-4 pr-4 hover:bg-slate-700 active:bg-slate-900'>
+										View Projects
+									</button>
 								</div>
 							</div>
 						</div>
@@ -102,7 +108,8 @@ export default function HomeFragment() {
 								<Text>
 									I have been an artist for most of my
 									elementary and highschool career and have
-									made many sketches over the years.
+									made many sketches over the years. Click the
+									button below to view my art portfolio.
 								</Text>
 								<Button>View Art Portfolio</Button>
 							</div>

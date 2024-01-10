@@ -9,21 +9,21 @@ export default {
 		extend: {
 			'animation': {
 				fade: 'fadeIn 2s ease-in-out',
-				slideShow_0: 'slideShow 8s linear infinite',
-				slideShow_1: 'slideShow 8s linear -1s infinite',
-				slideShow_2: 'slideShow 8s linear -2s infinite',
-				slideShow_3: 'slideShow 8s linear -3s infinite',
-				slideShow_4: 'slideShow 8s linear -4s infinite',
-				slideShow_5: 'slideShow 8s linear -5s infinite',
-				slideShow_6: 'slideShow 8s linear -6s infinite',
-				slideShow_7: 'slideShow 8s linear -7s infinite',
+				slideshow_0: 'slideshow 8s linear infinite',
+				slideshow_1: 'slideshow 8s linear -1s infinite',
+				slideshow_2: 'slideshow 8s linear -2s infinite',
+				slideshow_3: 'slideshow 8s linear -3s infinite',
+				slideshow_4: 'slideshow 8s linear -4s infinite',
+				slideshow_5: 'slideshow 8s linear -5s infinite',
+				slideshow_6: 'slideshow 8s linear -6s infinite',
+				slideshow_7: 'slideshow 8s linear -7s infinite',
 			},
 			keyframes: (theme) => ({
 				fadeIn: {
 					'100%': { opacity: 1 },
 					'0%': { opacity: 0 },
 				},
-				slideShow: {
+				slideshow: {
 					// fade in
 					'0%': {
 						opacity: 0,
