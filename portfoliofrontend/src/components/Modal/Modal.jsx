@@ -1,64 +1,42 @@
-import React, { useEffect, useContext, createContext } from "react";
+import { useEffect } from "react";
 
-class ModalData {
-	constructor(visible = false, content = <div></div>, title = "default") {
-		this.visible = visible;
-		this.content = content;
-		this.title = title;
-	}
-}
-
-export const ModalContext = createContext(null);
-
-export function ModalProvider(props) {
-	const [modalData, setModalData] = useState(new ModalData());
-
+// modal view
+export default function Modal(props) {
 	useEffect(() => {
-		
-	}, []);
-
-	return (
-		<ModalContext.Provider value={modalData}>
-			<div>
-				<ModalView />
-				{props.children}
-			</div>
-		</ModalContext.Provider>
-	);
-}
-
-export function showModal(content, title = "default") {
-}
-
-export function closeModal() {
-
-}
-
-function ModalView(props) {
-	const modalData = useContext(ModalContext);
-	let visible = modalData.visible;
-
-	useEffect(() => {
-
-		if (visible == true) document.body.style.overflowY = "hidden";
+		if (props.visible == true) document.body.style.overflowY = "hidden";
 		else document.body.style.overflowY = "unset";
 		return () => {
 			document.body.style.overflowY = "unset";
 		};
-	}, []);
+	}, [props.visible]);
 
 	return (
 		<div
 			className={
-				"absolute inset-0 w-full h-full bg-gray-700/50 z-20 backdrop-blur-sm drop-shadow-md z-40" +
-				(visible == true ? "" : " hidden")
+				"fixed inset-0 w-full h-full bg-gray-700/50 z-20 backdrop-blur-sm shadow-2xl drop-shadow-xl" +
+				(!props.visible && " hidden")
 			}
 		>
 			<div className='flex flex-row h-full'>
+				{/*TODO: Consider shrinking the basises to 1/6, 2/3, 1/6 respectively for a smaller screen size */}
 				<div className='basis-1/4' />
 				<div className='basis-1/2 flex flex-col'>
-					<div className='flex-1 my-10 bg-white rounded-2xl p-5'>
-						asdfasdf
+					<div className='flex-1 flex flex-col my-10 bg-white rounded-2xl'>
+						{/* Header */}
+						<div
+							className='h-40 rounded-t-2xl bg-cover bg-no-repeat bg-center'
+							style={{ backgroundImage: props.background }}
+						></div>
+						<div className='flex-1 p-5'>{props.children}</div>
+						{/* Footer */}
+						<div className='p-5 flex flex-row-reverse'>
+							<button
+								onClick={props.toggleVisibility}
+								className='bg-blue-600 text-white font-bold py-2 px-4 rounded-xl '
+							>
+								Close
+							</button>
+						</div>
 					</div>
 				</div>
 				<div className='basis-1/4' />
