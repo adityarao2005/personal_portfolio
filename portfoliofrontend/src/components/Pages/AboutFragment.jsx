@@ -46,9 +46,14 @@ function ObservableElement({ children }) {
 	);
 }
 
-function Skill({ text }) {
+function Skill({ text, color = "bg-gray-500" }) {
 	return (
-		<div className='bg-gray-500 rounded-full px-2 py-1 my-2 mr-1 font-semibold text-white w-fit inline-block'>
+		<div
+			className={
+				color +
+				" rounded-full px-2 py-1 my-2 mr-1 font-semibold text-white w-fit inline-block"
+			}
+		>
 			{text}
 		</div>
 	);
@@ -60,7 +65,11 @@ function SkillBox({ header, list }) {
 			<div className='font-semibold'>{header}</div>
 			<hr></hr>
 			{list.map((skill) => (
-				<Skill key={skill.toString()} text={skill}></Skill>
+				<Skill
+					color='bg-gray-800'
+					key={skill.toString()}
+					text={skill}
+				></Skill>
 			))}
 		</div>
 	);
@@ -83,32 +92,51 @@ export default function AboutFragment() {
 						</h1>
 					</ObservableElement>
 					{/* About me Content: Name, School, Grade, Interests, Hobbies, etc. */}
-					<ObservableElement>
-						<div className='pt-5 pb-20 text-left'>
-							<span className='fa-stack fa-2x fa-pull-left'>
-								<i className='far fa-circle fa-stack-2x'></i>
-								<i className='fas fa-user fa-stack-1x'></i>
-							</span>
-							<p>
+					<div className='pt-5 pb-20 text-left'>
+						<ObservableElement>
+							<p className='pt-2 pb-6'>
+								<span className='fa-stack fa-2x fa-pull-left'>
+									<i className='far fa-circle fa-stack-2x'></i>
+									<i className='fas fa-user fa-stack-1x'></i>
+								</span>{" "}
 								My name is Aditya Rao. I'm currently a first
 								year B.Eng. student with the intent in majoring
-								in Software Engineering. I graduated with Honors
-								at Bur Oak Secondary School in Markham, Ontario.
-								I've got a great passion for math and the
-								sciences, and I'm always looking to learn more
-								about the world around me. Although my mind is
-								mostly on understanding Computer Science and
-								Mathematics, Physics and Chemistry have a
-								special place in my heart and mind. I'm also a
-								huge fan of the arts, and I love to draw and
-								paint in my free time. I'm also a huge fan of
-								music, and I love to play the violin (in both
-								Carnatic and Western styles) and the flute. I'm
-								also a competitive badminton player and I love
-								playing table tennis often.
+								in Software Engineering. I graduated from
+								highschool with Honors at Bur Oak Secondary
+								School in Markham, Ontario. I'm interested in
+								exploring many aspects and applications of
+								software and engineering.
 							</p>
-						</div>
-					</ObservableElement>
+						</ObservableElement>
+						<ObservableElement>
+							<p className='pt-2 pb-6'>
+								<span className='fa-stack fa-2x fa-pull-left'>
+									<i className='far fa-circle fa-stack-2x'></i>
+									<i className='fas fa-school fa-stack-1x'></i>
+								</span>{" "}
+								I've got a great passion for math and the
+								sciences and I'm always looking to learn more
+								about the world around me. Although my mind is
+								mostly on understanding Computer Science,
+								Mathematics, Physics and Chemistry have always
+								had special place in my heart and mind.
+							</p>
+						</ObservableElement>
+						<ObservableElement>
+							<p className='pt-2 pb-6'>
+								<span className='fa-stack fa-2x fa-pull-left'>
+									<i className='far fa-circle fa-stack-2x'></i>
+									<i className='fas fa-info fa-stack-1x'></i>
+								</span>{" "}
+								I'm also a huge fan of the arts, and I love to
+								draw and paint in my free time. I'm also a huge
+								fan of music, and I love to play the violin (in
+								both Carnatic and Western styles) and the flute.
+								I'm also a competitive badminton player and I
+								love playing table tennis often.
+							</p>
+						</ObservableElement>
+					</div>
 
 					{/* Experties section: discuss languages and technical skills - header */}
 					<ObservableElement>
@@ -264,6 +292,18 @@ export default function AboutFragment() {
 										"OpenGL",
 									]}
 								/>
+
+								<SkillBox
+									header='Office'
+									list={[
+										"Word",
+										"Powerpoint",
+										"Excel",
+										"Outlook",
+										"Sharepoint",
+										"Access",
+									]}
+								/>
 							</div>
 							<div>
 								<SkillBox
@@ -289,6 +329,17 @@ export default function AboutFragment() {
 										"Python",
 									]}
 								/>
+								<SkillBox
+									header='G-Apps'
+									list={[
+										"Docs",
+										"Slides",
+										"Spreadsheet",
+										"Calendar",
+										"Drive",
+										"Gmail",
+									]}
+								/>
 							</div>
 							<div>
 								<SkillBox
@@ -310,6 +361,20 @@ export default function AboutFragment() {
 										"Visual Studio",
 										"Eclipse",
 										"Postman",
+										"Maven",
+										"PIP",
+										"NPM",
+										"Gradle",
+									]}
+								/>
+								<SkillBox
+									header='Misc'
+									list={[
+										"Autodesk Inventor",
+										"Granta EduPack",
+										"Figma",
+										"Unity",
+										"Paint3D"
 									]}
 								/>
 							</div>
@@ -320,10 +385,11 @@ export default function AboutFragment() {
 					<ObservableElement>
 						<h1
 							className={
-								"pt-10 text-white text-3xl md:text-2xl font-semibold font-['Poppins']"
+								"pt-5 text-white text-3xl md:text-2xl font-semibold font-['Poppins']"
 							}
 						>
-							<FontAwesomeIcon icon={faTrophy} /> Awards
+							<FontAwesomeIcon icon={faTrophy} color='yellow' />{" "}
+							Awards
 						</h1>
 					</ObservableElement>
 
