@@ -595,6 +595,7 @@ function ProjectViewModel(props) {
 		</Modal>
 	);
 }
+/** TODO: Change the images */
 
 // cards
 function ProjectCard(props) {
