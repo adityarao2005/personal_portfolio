@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+
 export default {
 	content: [
 		"./index.html",
@@ -114,5 +116,6 @@ export default {
 			// => @media (min-width: 1536px) { ... }
 		},
 	},
-	plugins: [],
+	plugins: [
+	],
 }
