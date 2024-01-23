@@ -1,20 +1,18 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 function Link(props) {
 	return (
 		<li>
-			<NavLink
-				to={props.href}
-				className={({ isActive }) =>
-					[
-						"block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
-						isActive ? "text-white" : "text-gray-400",
-					].join(" ")
-				}
+			<a
+				href={props.href}
+				className={[
+					"block py-2 px-3 rounded md:hover:text-blue-700 md:p-0 md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent",
+					props.active ? "text-white" : "text-gray-400",
+				].join(" ")}
+				onClick={props.setActive}
 			>
 				{props.text}
-			</NavLink>
+			</a>
 		</li>
 	);
 }
@@ -42,6 +40,7 @@ function HamburgerMenu(props) {
 const NavComponent = (props) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	return (
 		<nav className='flex-none border-gray-200 bg-gray-900 sticky top-0 z-20'>
@@ -72,10 +71,12 @@ const NavComponent = (props) => {
 					}
 				>
 					<ul className='font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 bg-gray-800 md:bg-gray-900 border-gray-700'>
-						{props.links.map((link) => (
+						{props.links.map((link, index) => (
 							<Link
+								active={activeIndex == index}
+								setActive={() => setActiveIndex(index)}
 								href={link.href}
-								key={link.id}
+								key={index}
 								text={link.text}
 							/>
 						))}

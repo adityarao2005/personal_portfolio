@@ -224,7 +224,7 @@ const projects = [
 			// End date
 			"May 2023",
 			// Github
-			"https://github.com/adityrao2005/DemographicDataVisualizer",
+			"https://github.com/adityarao2005/DemographicDataVisualizer",
 			// Collaborators
 			null,
 			// Awards
@@ -619,17 +619,20 @@ function ProjectCard(props) {
 			<div className='flex-1'></div>
 			<div>
 				{props.project.details.endDate == "Present" ? (
-					<div className='rounded rounded-full bg-red-500 p-1 w-fit'>
+					<div className='rounded-full bg-red-500 p-1 w-fit'>
 						In Progress
 					</div>
 				) : (
-					<div className='rounded rounded-full bg-green-600 p-1 w-fit'>
+					<div className='rounded-full bg-green-600 p-1 w-fit'>
 						Completed
 					</div>
 				)}
 
-				{props.project.details.skills.map((skill) => (
-					<div className='bg-gray-500 rounded-full px-2 py-1 my-2 mr-1 font-semibold text-white w-fit inline-block'>
+				{props.project.details.skills.map((skill, index) => (
+					<div
+						key={index}
+						className='bg-gray-500 rounded-full px-2 py-1 my-2 mr-1 font-semibold text-white w-fit inline-block'
+					>
 						{skill}
 					</div>
 				))}
@@ -650,46 +653,47 @@ export default function ProjectFragment() {
 	};
 
 	return (
-		<>
-			<div className='w-screen h-fit flex-1 bg-emerald-50 p-10 relative'>
-				<ProjectViewModel
-					visible={modalVisible}
-					toggleVisibility={() => toggleVisibility(null)}
-					project={selectedProject}
-				/>
-				<div className='mb-10'>
-					<h1
-						className={
-							"text-center mx-auto text-black text-3xl md:text-6xl font-semibold font-['Poppins']"
-						}
-					>
-						Projects
-					</h1>
-				</div>
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-					{projects.map((project, index) => (
-						<ProjectCard
-							key={index}
-							project={project}
-							onClick={() => toggleVisibility(project)}
-							visible={index < shownProjects}
-						/>
-					))}
-				</div>
-				{shownProjects < projects.length && (
-					<div className='p-5 flex flex-row'>
-						<div className='flex-1 h-[1px] my-auto bg-black' />
-						<button
-							className='px-2'
-							onClick={() => setShownProjects(shownProjects + 4)}
-						>
-							<div className='inline-block -rotate-90'>&lt;</div>{" "}
-							Load More
-						</button>
-						<div className='flex-1 h-[1px] my-auto bg-black' />
-					</div>
-				)}
+		<div
+			id='projects'
+			className='w-screen h-fit flex-1 bg-emerald-50 p-10 relative'
+		>
+			<ProjectViewModel
+				visible={modalVisible}
+				toggleVisibility={() => toggleVisibility(null)}
+				project={selectedProject}
+			/>
+			<div className='my-10'>
+				<h1
+					className={
+						"text-center mx-auto text-black text-3xl md:text-6xl font-semibold font-['Poppins']"
+					}
+				>
+					Projects
+				</h1>
 			</div>
-		</>
+			<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+				{projects.map((project, index) => (
+					<ProjectCard
+						key={index}
+						project={project}
+						onClick={() => toggleVisibility(project)}
+						visible={index < shownProjects}
+					/>
+				))}
+			</div>
+			{shownProjects < projects.length && (
+				<div className='p-5 flex flex-row'>
+					<div className='flex-1 h-[1px] my-auto bg-black' />
+					<button
+						className='px-2'
+						onClick={() => setShownProjects(shownProjects + 4)}
+					>
+						<div className='inline-block -rotate-90'>&lt;</div> Load
+						More
+					</button>
+					<div className='flex-1 h-[1px] my-auto bg-black' />
+				</div>
+			)}
+		</div>
 	);
 }

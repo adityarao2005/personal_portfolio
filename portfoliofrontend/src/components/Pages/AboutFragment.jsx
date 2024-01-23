@@ -77,7 +77,7 @@ function SkillBox({ header, list }) {
 
 export default function AboutFragment() {
 	return (
-		<div className='w-screen h-fit flex-1'>
+		<div id='about' className='w-screen h-fit flex-1'>
 			<div className='grid md:h-full bg-black text-white p-20 grid grid-cols-2'>
 				{/* First column */}
 				<div className='pr-4'>
@@ -374,7 +374,7 @@ export default function AboutFragment() {
 										"Granta EduPack",
 										"Figma",
 										"Unity",
-										"Paint3D"
+										"Paint3D",
 									]}
 								/>
 							</div>
