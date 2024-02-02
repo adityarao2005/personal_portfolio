@@ -23,10 +23,15 @@ export default function Modal(props) {
 				<div className='basis-1/2 flex flex-col'>
 					<div className='flex-1 flex flex-col my-10 bg-white rounded-2xl'>
 						{/* Header */}
-						<div
-							className='h-40 rounded-t-2xl bg-cover bg-no-repeat bg-center'
-							style={{ backgroundImage: props.background }}
-						></div>
+						{(props.backgroundColor || props.backgroundImage) && (
+							<div
+								className='h-40 rounded-t-2xl bg-cover bg-no-repeat bg-center'
+								style={{
+									backgroundImage: `url('${props.backgroundImage}')`,
+									backgroundColor: props.backgroundColor,
+								}}
+							></div>
+						)}
 						<div className='flex-1 p-5'>{props.children}</div>
 						{/* Footer */}
 						<div className='p-5 flex flex-row-reverse'>

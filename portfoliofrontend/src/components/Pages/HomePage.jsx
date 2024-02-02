@@ -4,6 +4,7 @@ import HomeFragment from "./HomeFragment";
 import AboutFragment from "./AboutFragment";
 import ProjectFragment from "./ProjectFragment";
 import ArtworkFragment from "./ArtworkFragment";
+import ContactMeFragment from "./ContactMeFragment";
 
 function HomePage() {
 	return (
@@ -12,6 +13,7 @@ function HomePage() {
 			<AboutFragment />
 			<ProjectFragment />
 			<ArtworkFragment />
+			<ContactMeFragment />
 		</div>
 	);
 }

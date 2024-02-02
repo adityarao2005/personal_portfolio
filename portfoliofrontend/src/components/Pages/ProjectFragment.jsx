@@ -473,9 +473,7 @@ function ProjectViewModel(props) {
 		<Modal
 			visible={props.visible}
 			toggleVisibility={props.toggleVisibility}
-			background={
-				props.project ? `url('${props.project.image}')` : "black"
-			}
+			backgroundImage={props.project && props.project.image}
 		>
 			{props.project && (
 				<div>

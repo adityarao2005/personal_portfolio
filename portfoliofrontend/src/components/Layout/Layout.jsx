@@ -11,9 +11,8 @@ function Layout() {
 						{ text: "Home", href: "#root" },
 						{ text: "About", href: "#about" },
 						{ text: "Projects", href: "#projects" },
-						{ text: "Vision", href: "#vision" },
 						{ text: "Artwork", href: "#artwork" },
-						{ text: "Contact", href: "#contact" },
+						{ text: "Contact", href: "#contact-me" },
 					]}
 					brandText={<b>Aditya Rao</b>}
 				/>
